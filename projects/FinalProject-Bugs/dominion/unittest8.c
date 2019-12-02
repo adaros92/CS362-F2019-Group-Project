@@ -42,13 +42,13 @@ int main () {
 	// Get the coin and discard pile counts before playing the Baron card
 	coinsBefore = G.coins;
 
-	cardEffect(feast, choice1, choice2, choice3, &G, 0, &bonus);
+	cardEffect(baron, choice1, choice2, choice3, &G, 0, &bonus);
 
 	// Get the coin and discard pile counts after playing the Feast card
 	coinsAfter = G.coins;
 
 	printf("The coins count after playing Baron has remained the same: %s\n", assert(coinsBefore, coinsAfter));
-	printf("The current player has gained 4 bonus coins for discarding the available Estate: %s\n", assert(bonus, 4));
+	printf("The current bonus of %d reflects the choice to give up estate: %s\n", bonus, assert(bonus, 4));
 
 	printf("\n\n");
 

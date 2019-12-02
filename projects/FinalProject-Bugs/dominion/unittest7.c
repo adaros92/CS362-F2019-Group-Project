@@ -55,11 +55,8 @@ int main () {
 	// Get the coin count after playing
 	coinsAfter = G.coins;
 
-	printf("The coins count after of %d is 4 more than coin count before of %d: %s\n", 
-		coinsAfter,
-		coinsBefore,
-		assert(coinsAfter - coinsBefore, 4)
-		);
+	printf("The coin count remains the same: %s\n", assert(coinsBefore, coinsBefore));
+	printf("The bonus count goes up by 4: %s\n", assert(bonus, 4));
 
 	printf("\n\n");
 
