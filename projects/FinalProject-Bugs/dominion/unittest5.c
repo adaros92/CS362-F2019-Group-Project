@@ -22,6 +22,9 @@ int main () {
 
 	initializeGame(2, k, seed, &G); //initialize a new game
 
+	// Set the current player
+	G.whoseTurn = p;
+
 	// Set the hand count to 5 and manually assign those cards
 	G.handCount[p] = 5;
 	G.hand[p][0] = curse;
@@ -61,6 +64,9 @@ int main () {
 	printf("Running test of scoreFor function when there are no cards in discard pile or hand\n\n");
 
 	initializeGame(2, k, seed, &G); //initialize a new game
+
+	// Set the current player
+	G.whoseTurn = p;
 
 	// Set the hand count to 0 
 	G.handCount[p] = 0;

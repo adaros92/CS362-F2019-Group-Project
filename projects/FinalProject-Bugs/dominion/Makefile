@@ -37,22 +37,14 @@ unittest8: unittest8.c dominion.o rngs.o custom_assert.o
 	gcc -o unittest8 -g unittest8.c dominion.o rngs.o custom_assert.o $(CFLAGS)
 
 unittestresults: unittest5 unittest6 unittest7 unittest8
-	#./unittest1 &> unittest1result.out
-	#gcov dominion.c -f >> unittest1result.out
-	#./unittest2 &> unittest2result.out
-	#gcov dominion.c -f >> unittest2result.out
-	#./unittest3 &> unittest3result.out
-	#gcov dominion.c -f >> unittest3result.out
-	#./unittest4 &> unittest4result.out
-	#gcov dominion.c -f >> unittest4result.out
-	./unittest5 &> unittest5result.out
-	gcov dominion.c -bf >> unittest5result.out
-	./unittest6 &> unittest6result.out
-	gcov dominion.c -bf >> unittest6result.out
-	./unittest7 &> unittest7result.out
-	gcov dominion.c -bf >> unittest7result.out
-	./unittest8 &> unittest8result.out
-	gcov dominion.c -bf >> unittest8result.out
+	./unittest5 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+	./unittest6 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+	./unittest7 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+	./unittest8 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

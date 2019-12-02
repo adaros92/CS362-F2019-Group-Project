@@ -15,46 +15,51 @@ int main () {
 	srand(time(NULL));
 	int seed = rand();
 	int p  = 0; // player to test
-	int discardCountBefore;
-	int discardCountAfter;
 	int coinsBefore;
 	int coinsAfter;
 	int bonus = 0;
-	int choice1;
-	// Choice 2 and 3 are not needed for Feast
+
+	// Choices are not needed for Tribute
+	int choice1 = -1;
 	int choice2 = -1;
 	int choice3 = -1;
 
-	printf("Running test of cardEffect when the Feast card is played\n\n");
+	printf("Running test of cardEffect when the Tribute card is played and next player has 2 known cards in deck\n\n");
 
 	initializeGame(2, k, seed, &G); //initialize a new game
 
+	// Set the current player
+	G.whoseTurn = p;
+
 	// Set the hand count to 5 and manually assign those cards
 	G.handCount[p] = 5;
-	G.hand[p][0] = feast;
+	G.hand[p][0] = tribute;
 	G.hand[p][1] = estate;
 	G.hand[p][2] = province;
 	G.hand[p][3] = great_hall;
 	G.hand[p][4] = duchy;
 
-	// Choose to gain an estate
-	choice1 = estate;
+	int nextPlayer = p + 1;
 
-	// Get the coin and discard pile counts before playing the Feast card
+	// Set the next player's deck to a fixed size of 2 and assign the cards manually to guarantee a known score
+	G.discardCount[nextPlayer] = 0;
+	G.deckCount[nextPlayer] = 2;
+	G.deck[nextPlayer][0] = silver;
+	G.deck[nextPlayer][1] = gold;
+
+	// Get the coin count before playing Tribute
 	coinsBefore = G.coins;
-	discardCountBefore = G.discardCount[p];
 
-	cardEffect(feast, choice1, choice2, choice3, &G, 0, &bonus);
+	cardEffect(tribute, choice1, choice2, choice3, &G, 0, &bonus);
 
-	// Get the coin and discard pile counts after playing the Feast card
-	discardCountAfter = G.discardCount[p];
+	// Get the coin count after playing
 	coinsAfter = G.coins;
 
-	int latestDiscardCard = G.discard[p][discardCountAfter - 1];
-
-	printf("The coins count after playing Feast has remained the same: %s\n", assert(coinsBefore, coinsAfter));
-	printf("The discard pile has grown by one: %s\n", assert(discardCountAfter - discardCountBefore, 1));
-	printf("The last card in the discard pile is the Estate that was gained: %s\n", assert(latestDiscardCard, estate));
+	printf("The coins count after of %d is 4 more than coin count before of %d: %s\n", 
+		coinsAfter,
+		coinsBefore,
+		assert(coinsAfter - coinsBefore, 4)
+		);
 
 	printf("\n\n");
 
