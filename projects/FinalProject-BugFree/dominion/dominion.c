@@ -411,7 +411,7 @@ int isGameOver(struct gameState *state) {
 		}
 		i++;
 	}
-	
+
     if ( j >= 3)
     {
         return 1;
@@ -967,13 +967,14 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         state->numActions++;
 
         //discard card from hand
-        discardCard(handPos, currentPlayer, state, 0);
+
 
 		if (choice1)
         {
+            discardCard(handPos, currentPlayer, state, 0);    //Bug fix
             *bonus += 2;
         }
-        else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
+        else (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4 //BUG FIX changed to if else
         {
             //discard hand
             while(numHandCards(state) > 0)
@@ -1087,6 +1088,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                 drawCard(currentPlayer, state);
                 drawCard(currentPlayer, state);
             }
+            else if(tributeRevealedCards[i]==-1){
+              printf("Both revealed cards are the same\n"); //BUG FIX Campbjus
+            }
             else { //Action Card
                 state->numActions = state->numActions + 2;
             }
@@ -1109,7 +1113,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
         for (i = 0; i < state->handCount[currentPlayer]; i++)
         {
-            if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+            if (i != handPos && state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1] && i != choice1) //BUG FIX Campbjus
             {
                 j++;
             }
@@ -1380,4 +1384,3 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
 //end of dominion.c
-
