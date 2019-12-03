@@ -52,7 +52,7 @@ int main(){
 
 
 	numActionsAfter=G.numActions; //check to see if number of actions has changed
-	assert(numActionsBefore, numActionsAfter);  //assert fails because the second card is automatically read as an action card
+	printf("Number of actions before equals number of actions after %s\n", assert(numActionsBefore, numActionsAfter));  //assert fails because the second card is automatically read as an action card
 
 	printf("Before: %d\nAfter: %d\n", numActionsBefore, numActionsAfter);
 	

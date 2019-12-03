@@ -44,7 +44,7 @@ int main(){
 	
 	passed = cardEffect(ambassador, choice1, choice2, choice3, &G, 0, bonus);
 
-	assert(passed, -1); //assert fails because the for loop does not correctly add up the number of cards in the players hand
+	printf("CardEffect call returns -1 %s\n", assert(passed, -1)); //assert fails because the for loop does not correctly add up the number of cards in the players hand
 
 
 	printf("Did it pass: %d\n", passed);
