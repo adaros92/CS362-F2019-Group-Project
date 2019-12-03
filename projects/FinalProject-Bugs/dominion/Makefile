@@ -36,7 +36,19 @@ unittest7: unittest7.c dominion.o rngs.o custom_assert.o
 unittest8: unittest8.c dominion.o rngs.o custom_assert.o
 	gcc -o unittest8 -g unittest8.c dominion.o rngs.o custom_assert.o $(CFLAGS)
 
-unittestresults: unittest5 unittest6 unittest7 unittest8
+unittest9: unittest9.c dominion.o rngs.o custom_assert.o
+	gcc -o unittest9 -g unittest9.c dominion.o rngs.o custom_assert.o $(CFLAGS)
+
+unittest9: unittest9.c dominion.o rngs.o  custom_assert.o
+	gcc -o unittest9 -g unittest9.c dominion.o rngs.o custom_assert.o $(CFLAGS) 
+
+unittest10: unittest10.c dominion.o rngs.o custom_assert.o 
+	gcc -o unittest10 -g unittest10.c dominion.o rngs.o custom_assert.o $(CFLAGS) 
+
+unittest11: unittest11.c dominion.o rngs.o custom_assert.o
+	gcc -o unittest11 -g unittest11.c dominion.o rngs.o custom_assert.o $(CFLAGS) 
+
+unittestresults: unittest5 unittest6 unittest7 unittest8 unittest9 unittest10 unittest11
 	./unittest5 >> unittestresults.out
 	gcov dominion.c -bf >> unittestresults.out
 	./unittest6 >> unittestresults.out
@@ -45,7 +57,14 @@ unittestresults: unittest5 unittest6 unittest7 unittest8
 	gcov dominion.c -bf >> unittestresults.out
 	./unittest8 >> unittestresults.out
 	gcov dominion.c -bf >> unittestresults.out
-
+	./unittest9 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+	./unittest10 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+	./unittest11 >> unittestresults.out
+	gcov dominion.c -bf >> unittestresults.out
+	
+	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
