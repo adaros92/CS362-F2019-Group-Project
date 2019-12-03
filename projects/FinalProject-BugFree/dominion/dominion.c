@@ -974,7 +974,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             discardCard(handPos, currentPlayer, state, 0);    //Bug fix
             *bonus += 2;
         }
-        else (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4 //BUG FIX changed to if else
+        else	
         {
             //discard hand
             while(numHandCards(state) > 0)
