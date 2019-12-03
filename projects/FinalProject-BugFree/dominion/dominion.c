@@ -401,17 +401,13 @@ int isGameOver(struct gameState *state) {
 
     //if three supply pile are at 0, the game ends
     j = 0;
-	//i think this code is right to iterate through everything
-	i=0;
-	while(state->supplyCount[i] >=0 || state->supplyCount[i] == -1)
-	{//counts cards in play as well as those not in play, iterate through all
-    		if(state->supplyCount[i] == 0)
-		{
-			j++;
-		}
-		i++;
-	}
-
+    for (i = 0; i < 27; i++) //needed to change to iterate through all 27 cards in the enum
+    {
+        if (state->supplyCount[i] == 0)
+        {
+            j++;
+        }
+    }
     if ( j >= 3)
     {
         return 1;
